@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Max for Live Audio Streaming Setup Guide | XTERMINATORAPPS Blog</title>
+  <meta name="description"
+    content="Set up real-time audio streaming inside Ableton Live using Max for Live and OSC protocol. Technical guide for audio routing and device configuration.">
+  <meta name="keywords"
+    content="Max for Live audio streaming, OSC audio Ableton, Max for Live device setup, audio over OSC, real-time audio routing Ableton">
+  <link rel="icon" type="image/png" href="../favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="shortcut icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="blog.css">
+</head>
+
+<body>
+  <nav class="blog-nav">
+    <div class="blog-nav-inner"><a href="../"><img src="../assets/logoxta-05.png" alt="XTERMINATORAPPS"
+          class="blog-nav-logo"></a>
+      <div class="blog-nav-links"><a href="../#products">Products</a><a href="./">Blog</a></div>
+    </div>
+  </nav>
+  <article class="article">
+    <span class="article-tag">Technical</span>
+    <h1>Max for Live Audio Streaming Setup Guide</h1>
+    <div class="article-meta">April 2026 -- 8 min read</div>
+    <p>Max for Live extends Ableton Live with custom devices built in Cycling '74's Max visual programming environment.
+      One powerful application is real-time audio streaming -- routing external audio sources directly into your Ableton
+      session using network protocols like OSC.</p>
+    <h2>Understanding Audio over OSC</h2>
+    <p><strong>OSC (Open Sound Control)</strong> is a protocol originally designed for real-time communication between
+      multimedia devices. While primarily used for control data (like MIDI alternatives), it can also transport audio
+      samples over local network connections with remarkably low latency.</p>
+    <p>This makes it ideal for bridging external applications with Ableton Live through Max for Live devices.</p>
+    <h2>Architecture Overview</h2>
+    <p>A typical audio streaming setup consists of:</p>
+    <ul>
+      <li><strong>Source application</strong> -- captures or generates audio (browser, external app, hardware)</li>
+      <li><strong>OSC sender</strong> -- packages audio samples into OSC messages</li>
+      <li><strong>Network transport</strong> -- localhost UDP for minimal latency</li>
+      <li><strong>Max for Live receiver</strong> -- unpacks OSC messages and outputs audio in Ableton</li>
+    </ul>
+    <h2>ABLETUBE: A Production-Ready Implementation</h2>
+    <p><a href="../#products">ABLETUBE</a> is a complete implementation of this architecture specifically for YouTube
+      audio. It includes both the Node.js server (OSC sender) and the Max for Live device (receiver), configured for
+      optimal latency and stability.</p>
+    <h2>Latency Considerations</h2>
+    <p>Audio over OSC on localhost typically achieves latencies under 20ms -- fast enough for real-time monitoring but
+      not suitable for tight rhythmic synchronization. For sampling and reference listening, this latency is
+      imperceptible.</p>
+    <h2>Requirements</h2>
+    <ul>
+      <li>Ableton Live 11 or 12 with Max for Live</li>
+      <li>Node.js runtime (bundled with ABLETUBE)</li>
+      <li>Windows 10/11 or macOS 10.14+</li>
+    </ul>
+    <div class="article-cta">
+      <h3>Get Started with Audio Streaming</h3>
+      <p>ABLETUBE provides a ready-to-use Max for Live audio streaming solution.</p>
+      <a href="https://xterminatorapps.gumroad.com/l/abletube" class="btn btn-green">Buy ABLETUBE - $5</a>
+    </div>
+  </article>
+  <footer class="blog-footer">
+    <p>(c) 2026 XTERMINATORAPPS. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
