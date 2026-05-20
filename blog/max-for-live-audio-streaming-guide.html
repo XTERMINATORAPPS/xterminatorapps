@@ -1,77 +1,282 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="en" data-accent="green">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Max for Live Audio Streaming Setup Guide | XTERMINATORAPPS Blog</title>
-  <meta name="description"
-    content="Set up real-time audio streaming inside Ableton Live using Max for Live and OSC protocol. Technical guide for audio routing and device configuration.">
-  <meta name="keywords"
-    content="Max for Live audio streaming, OSC audio Ableton, Max for Live device setup, audio over OSC, real-time audio routing Ableton">
-  <link rel="icon" type="image/png" href="../favicon-96x96.png" sizes="96x96">
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <link rel="shortcut icon" href="../favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-  <link rel="manifest" href="../site.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="blog.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="../assets/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+
+<!-- Primary Meta -->
+<title>Max for Live Audio Streaming Setup Guide | XTERMINATORAPPS Blog</title>
+<meta name="description" content="Set up real-time audio streaming inside Ableton Live using Max for Live and OSC protocol. Technical guide for audio routing and device configuration.">
+<meta name="keywords" content="Max for Live audio streaming, OSC audio Ableton, Max for Live device setup, audio over OSC, real-time audio routing Ableton">
+<meta name="author" content="XTERMINATORAPPS">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://xterminatorapps.shop/blog/max-for-live-audio-streaming-guide.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Max for Live Audio Streaming Setup Guide">
+<meta property="og:description" content="Set up real-time audio streaming inside Ableton Live using Max for Live and OSC protocol. Technical guide for audio routing and device configuration.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xterminatorapps.shop/blog/max-for-live-audio-streaming-guide.html">
+<meta property="og:site_name" content="XTERMINATORAPPS">
+<meta property="article:section" content="Technical">
+<meta property="og:image" content="https://xterminatorapps.shop/assets/logoxta-05.png">
+<meta property="og:image:alt" content="Max for Live Audio Streaming Setup Guide">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Max for Live Audio Streaming Setup Guide">
+<meta name="twitter:description" content="Set up real-time audio streaming inside Ableton Live using Max for Live and OSC protocol. Technical guide for audio routing and device configuration.">
+<meta name="twitter:image" content="https://xterminatorapps.shop/assets/logoxta-05.png">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Max for Live Audio Streaming Setup Guide",
+  "description": "Set up real-time audio streaming inside Ableton Live using Max for Live and OSC protocol. Technical guide for audio routing and device configuration.",
+  "keywords": "Max for Live audio streaming, OSC audio Ableton, Max for Live device setup, audio over OSC, real-time audio routing Ableton",
+  "url": "https://xterminatorapps.shop/blog/max-for-live-audio-streaming-guide.html",
+  "mainEntityOfPage": "https://xterminatorapps.shop/blog/max-for-live-audio-streaming-guide.html",
+  "datePublished": "2026-04-01",
+  "dateModified": "2026-04-01",
+  "author": {
+    "@type": "Organization",
+    "name": "XTERMINATORAPPS",
+    "url": "https://xterminatorapps.shop"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "XTERMINATORAPPS",
+    "url": "https://xterminatorapps.shop",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://xterminatorapps.shop/assets/logoxta-05.png"
+    }
+  },
+  "articleSection": "Technical",
+  "timeRequired": "PT8M"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://xterminatorapps.shop"},
+    {"@type":"ListItem","position":2,"name":"Blog","item":"https://xterminatorapps.shop/blog/"},
+    {"@type":"ListItem","position":3,"name":"Max for Live Audio Streaming Setup Guide","item":"https://xterminatorapps.shop/blog/max-for-live-audio-streaming-guide.html"}
+  ]
+}
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Styles -->
+<link rel="stylesheet" href="../css/styles.css?v=2026.04.27.3">
+<link rel="stylesheet" href="../css/post.css">
+<style>
+</style>
 </head>
+<body data-grid="false">
 
-<body>
-  <nav class="blog-nav">
-    <div class="blog-nav-inner"><a href="../"><img src="../assets/logoxta-05.png" alt="XTERMINATORAPPS"
-          class="blog-nav-logo"></a>
-      <div class="blog-nav-links"><a href="../#products">Products</a><a href="./">Blog</a></div>
+<!-- Topbar -->
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <a href="../" class="brand">
+      <img src="../assets/logoxta-05.png" alt="XTAPPS" class="brand__logo">
+    </a>
+    <nav class="nav">
+      <a href="../index.html#products" data-i="01">Products</a>
+      <a href="../index.html#about" data-i="02">About</a>
+      <a href="./index.html" data-i="03">Blog</a>
+      <a href="../index.html#faq" data-i="04">FAQ</a>
+      <a href="../index.html#contact" data-i="05">Contact</a>
+    </nav>
+    <div class="topbar__status">
+      <span class="pulse"></span>
+      <span id="clock">LIVE · 00:00:00</span>
     </div>
-  </nav>
-  <article class="article">
-    <span class="article-tag">Technical</span>
-    <h1>Max for Live Audio Streaming Setup Guide</h1>
-    <div class="article-meta">April 2026 -- 8 min read</div>
-    <p>Max for Live extends Ableton Live with custom devices built in Cycling '74's Max visual programming environment.
-      One powerful application is real-time audio streaming -- routing external audio sources directly into your Ableton
-      session using network protocols like OSC.</p>
-    <h2>Understanding Audio over OSC</h2>
-    <p><strong>OSC (Open Sound Control)</strong> is a protocol originally designed for real-time communication between
-      multimedia devices. While primarily used for control data (like MIDI alternatives), it can also transport audio
-      samples over local network connections with remarkably low latency.</p>
-    <p>This makes it ideal for bridging external applications with Ableton Live through Max for Live devices.</p>
-    <h2>Architecture Overview</h2>
-    <p>A typical audio streaming setup consists of:</p>
-    <ul>
-      <li><strong>Source application</strong> -- captures or generates audio (browser, external app, hardware)</li>
-      <li><strong>OSC sender</strong> -- packages audio samples into OSC messages</li>
-      <li><strong>Network transport</strong> -- localhost UDP for minimal latency</li>
-      <li><strong>Max for Live receiver</strong> -- unpacks OSC messages and outputs audio in Ableton</li>
-    </ul>
-    <h2>ABLETUBE: A Production-Ready Implementation</h2>
-    <p><a href="../#products">ABLETUBE</a> is a complete implementation of this architecture specifically for YouTube
-      audio. It includes both the Node.js server (OSC sender) and the Max for Live device (receiver), configured for
-      optimal latency and stability.</p>
-    <h2>Latency Considerations</h2>
-    <p>Audio over OSC on localhost typically achieves latencies under 20ms -- fast enough for real-time monitoring but
-      not suitable for tight rhythmic synchronization. For sampling and reference listening, this latency is
-      imperceptible.</p>
-    <h2>Requirements</h2>
-    <ul>
-      <li>Ableton Live 11 or 12 with Max for Live</li>
-      <li>Node.js runtime (bundled with ABLETUBE)</li>
-      <li>Windows 10/11 or macOS 10.14+</li>
-    </ul>
-    <div class="article-cta">
-      <h3>Get Started with Audio Streaming</h3>
-      <p>ABLETUBE provides a ready-to-use Max for Live audio streaming solution.</p>
-      <a href="https://xterminatorapps.gumroad.com/l/abletube" class="btn btn-green">Buy ABLETUBE - $5</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="post-hero">
+  <div class="wrap">
+    <div class="post-hero__crumbs">
+      <a href="../">Home</a><span class="sep">/</span>
+      <a href="./index.html">Blog</a><span class="sep">/</span>
+      <span>Technical</span>
     </div>
-  </article>
-  <footer class="blog-footer">
-    <p>(c) 2026 XTERMINATORAPPS. All rights reserved.</p>
-  </footer>
+    <span class="post-hero__tag">Technical</span>
+    <h1 class="post-hero__title">Max for Live Audio Streaming Setup Guide</h1>
+    <div class="post-hero__meta-row">
+      <div class="post-hero__meta-cell">
+        <span class="label">Published</span>
+        <span class="val">April 2026</span>
+      </div>
+      <div class="post-hero__meta-cell">
+        <span class="label">Read time</span>
+        <span class="val accent">8 min</span>
+      </div>
+      <div class="post-hero__meta-cell">
+        <span class="label">Category</span>
+        <span class="val">Technical</span>
+      </div>
+      <div class="post-hero__meta-cell">
+        <span class="label">Sections</span>
+        <span class="val">5</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Article -->
+<main class="section" style="padding:0;">
+  <div class="wrap">
+    <div class="post-layout">
+      <div class="post-rail">
+        <span class="dot"></span>Article · Technical · 8 min
+      </div>
+      <article class="post-body">
+        <p>Max for Live extends Ableton Live with custom devices built in Cycling '74's Max visual programming environment.
+One powerful application is real-time audio streaming -- routing external audio sources directly into your Ableton
+session using network protocols like OSC.</p>
+<h2 id="understanding-audio-over-osc">Understanding Audio over OSC</h2>
+<p><strong>OSC (Open Sound Control)</strong> is a protocol originally designed for real-time communication between
+multimedia devices. While primarily used for control data (like MIDI alternatives), it can also transport audio
+samples over local network connections with remarkably low latency.</p>
+<p>This makes it ideal for bridging external applications with Ableton Live through Max for Live devices.</p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>A typical audio streaming setup consists of:</p>
+<ul>
+<li><strong>Source application</strong> -- captures or generates audio (browser, external app, hardware)</li>
+<li><strong>OSC sender</strong> -- packages audio samples into OSC messages</li>
+<li><strong>Network transport</strong> -- localhost UDP for minimal latency</li>
+<li><strong>Max for Live receiver</strong> -- unpacks OSC messages and outputs audio in Ableton</li>
+</ul>
+<h2 id="abletube-a-production-ready-implementation">ABLETUBE: A Production-Ready Implementation</h2>
+<p><a href="../#products">ABLETUBE</a> is a complete implementation of this architecture specifically for YouTube
+audio. It includes both the Node.js server (OSC sender) and the Max for Live device (receiver), configured for
+optimal latency and stability.</p>
+<h2 id="latency-considerations">Latency Considerations</h2>
+<p>Audio over OSC on localhost typically achieves latencies under 20ms -- fast enough for real-time monitoring but
+not suitable for tight rhythmic synchronization. For sampling and reference listening, this latency is
+imperceptible.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Ableton Live 11 or 12 with Max for Live</li>
+<li>Node.js runtime (bundled with ABLETUBE)</li>
+<li>Windows 10/11 or macOS 10.14+</li>
+</ul>
+<div class="article-cta">
+<h3>Get Started with Audio Streaming</h3>
+<p>ABLETUBE provides a ready-to-use Max for Live audio streaming solution.</p>
+<a href="https://xterminatorapps.gumroad.com/l/abletube" class="btn btn-green">Buy ABLETUBE - $5</a>
+</div>
+      </article>
+      
+        <aside class="post-toc">
+          <div class="post-toc__label">[ Contents ]</div>
+          <ul class="post-toc__list">
+            <li><a href="#understanding-audio-over-osc" data-n="01">Understanding Audio over OSC</a></li>
+            <li><a href="#architecture-overview" data-n="02">Architecture Overview</a></li>
+            <li><a href="#abletube-a-production-ready-implementation" data-n="03">ABLETUBE: A Production-Ready Implementation</a></li>
+            <li><a href="#latency-considerations" data-n="04">Latency Considerations</a></li>
+            <li><a href="#requirements" data-n="05">Requirements</a></li>
+          </ul>
+        </aside>
+    </div>
+  </div>
+</main>
+
+
+    <section class="post-related">
+      <div class="wrap">
+        <div class="post-related__label">[ Keep reading · related posts ]</div>
+        <div class="post-related__grid">
+          
+          <a href="how-to-convert-aaf-to-ableton-live.html" class="post-related__card">
+            <span class="tag">Tutorial</span>
+            <span class="title">How to Convert AAF to Ableton Live</span>
+            <span class="read">8 min read</span>
+          </a>
+          <a href="pro-tools-to-ableton-live-transfer-guide.html" class="post-related__card">
+            <span class="tag">Guide</span>
+            <span class="title">Pro Tools to Ableton Live Project Transfer Guide</span>
+            <span class="read">7 min read</span>
+          </a>
+          <a href="premiere-pro-audio-to-ableton-live.html" class="post-related__card">
+            <span class="tag">Workflow</span>
+            <span class="title">Import Premiere Pro Audio into Ableton Live</span>
+            <span class="read">6 min read</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="../assets/LOKOOO-01.png" alt="XTAPPS" class="footer__logo">
+        <p>Professional audio software for music producers. Lifetime licenses. No subscriptions. Built to make producers faster.</p>
+      </div>
+      <div class="footer__col">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="../index.html#u-aaf">Abletonlive.aaf</a></li>
+          <li><a href="../index.html#u-ablt">ABLETUBE</a></li>
+          <li><a href="../index.html#u-sf">SampleForge</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#changelog">Changelog</a></li>
+          <li><a href="./index.html">Blog</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Resources</h5>
+        <ul>
+          <li><a href="mailto:contact@xterminatorapps.shop">Contact</a></li>
+          <li><a href="https://github.com/xterminatorapps">GitHub</a></li>
+          <li><a href="https://xterminatorapps.gumroad.com/affiliates">Affiliates</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <div>© 2026 XTAPPS · All rights reserved</div>
+      <div><span>Audio tools built for professionals</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const el = document.getElementById('clock');
+  function tick() {
+    const d = new Date();
+    el.textContent = `LIVE · ${String(d.getUTCHours()).padStart(2,'0')}:${String(d.getUTCMinutes()).padStart(2,'0')}:${String(d.getUTCSeconds()).padStart(2,'0')} UTC`;
+  }
+  tick(); setInterval(tick, 1000);
+})();
+</script>
+<script src="https://gumroad.com/js/gumroad.js"></script>
+<div class="cursor-dot"></div>
+<script src="../js/cursor.js?v=2026.04.27" defer></script>
 </body>
-
 </html>
