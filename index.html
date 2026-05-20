@@ -1001,14 +1001,19 @@
             $v.textContent = 'v' + data.version;
             if ($heading) $heading.innerHTML = `Abletonlive.aaf<br>v${data.version} update`;
           }
-          // Release notes — split on newlines, strip leading bullets
+          // Release notes -- handle string or array format
           if (data.release_notes) {
-            const lines = data.release_notes
-              .split(/\r?\n/)
-              .map(l => l.trim().replace(/^[-•*]\s*/, ''))
-              .filter(Boolean);
+            var lines;
+            if (Array.isArray(data.release_notes)) {
+              lines = data.release_notes.map(function(l) { return String(l).trim().replace(/^[-*]\s*/, ''); }).filter(Boolean);
+            } else {
+              lines = String(data.release_notes)
+                .split(/\r?\n/)
+                .map(function(l) { return l.trim().replace(/^[-*]\s*/, ''); })
+                .filter(Boolean);
+            }
             if (lines.length) {
-              $notes.innerHTML = lines.map(l => `<li>${l.replace(/[<>]/g, c => ({ '<': '&lt;', '>': '&gt;' }[c]))}</li>`).join('');
+              $notes.innerHTML = lines.map(function(l) { return '<li>' + l.replace(/[<>]/g, function(c) { return ({ '<': '&lt;', '>': '&gt;' }[c]); }) + '</li>'; }).join('');
             }
           }
         })
