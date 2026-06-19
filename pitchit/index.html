@@ -32,7 +32,8 @@
   <meta property="og:site_name" content="XTERMINATORAPPS">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="PITCH:IT - Pitch correction for Ableton Live">
-  <meta name="twitter:description" content="Tune any audio clip on a note editor inside Ableton Live. No Melodyne, no ARA, no bouncing out. Mac and Windows.">
+  <meta name="twitter:description"
+    content="Tune any audio clip on a note editor inside Ableton Live. No Melodyne, no ARA, no bouncing out. Mac and Windows.">
   <meta name="twitter:image" content="https://xterminatorapps.shop/assets/pitchit/pitchit-23.png">
 
   <script type="application/ld+json">
@@ -63,74 +64,380 @@
 
   <!-- Page-specific styles (scoped to PITCH:IT) -->
   <style>
-    .pi-wrap { max-width: 1180px; margin: 0 auto; padding: 0 var(--gutter); }
-    .pi-section { padding: 72px 0; border-bottom: 1px solid var(--border); }
-    .pi-eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+    .pi-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    .pi-section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pi-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
 
     /* hero */
-    .pi-hero { padding: 64px 0 56px; }
-    .pi-logo-wrap { margin: 14px 0 18px; line-height: 0; }
-    .pi-logo-img { height: clamp(52px, 9vw, 104px); width: auto; display: block; }
-    .pi-tag { font-size: clamp(17px, 2.4vw, 22px); color: var(--text-primary); max-width: 760px; margin: 0 0 14px; }
-    .pi-sub { color: var(--text-secondary); max-width: 720px; margin: 0 0 28px; line-height: 1.6; }
-    .pi-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-    .pi-btn { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; padding: 15px 26px; border: 1px solid transparent; cursor: pointer; transition: all 0.18s var(--ease); display: inline-flex; gap: 9px; align-items: center; }
-    .pi-btn--dl { background: var(--purple); color: #fff; }
-    .pi-btn--dl:hover { background: var(--purple-dim); }
-    .pi-btn--buy { background: var(--accent); color: #000; }
-    .pi-btn--buy:hover { background: var(--accent-dim); }
-    .pi-btn--ghost { background: transparent; color: var(--text-primary); border-color: var(--border-hover); }
-    .pi-btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
-    .pi-note { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; margin-top: 14px; }
+    .pi-hero {
+      padding: 64px 0 56px;
+    }
+
+    .pi-logo-wrap {
+      margin: 14px 0 18px;
+      line-height: 0;
+    }
+
+    .pi-logo-img {
+      height: clamp(52px, 9vw, 104px);
+      width: auto;
+      display: block;
+    }
+
+    .pi-tag {
+      font-size: clamp(17px, 2.4vw, 22px);
+      color: var(--text-primary);
+      max-width: 760px;
+      margin: 0 0 14px;
+    }
+
+    .pi-sub {
+      color: var(--text-secondary);
+      max-width: 720px;
+      margin: 0 0 28px;
+      line-height: 1.6;
+    }
+
+    .pi-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .pi-btn {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 15px 26px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.18s var(--ease);
+      display: inline-flex;
+      gap: 9px;
+      align-items: center;
+    }
+
+    .pi-btn--dl {
+      background: var(--purple);
+      color: #fff;
+    }
+
+    .pi-btn--dl:hover {
+      background: var(--purple-dim);
+    }
+
+    .pi-btn--buy {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .pi-btn--buy:hover {
+      background: var(--accent-dim);
+    }
+
+    .pi-btn--ghost {
+      background: transparent;
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    .pi-btn--ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .pi-note {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-top: 14px;
+    }
 
     /* carousel */
-    .pi-carousel { position: relative; margin-top: 8px; }
-    .pi-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 8px; -ms-overflow-style: none; scrollbar-width: none; }
-    .pi-track::-webkit-scrollbar { display: none; }
-    .pi-slide { flex: 0 0 100%; scroll-snap-align: center; aspect-ratio: 16 / 9; background: var(--bg-card); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; overflow: hidden; }
-    .pi-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .pi-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border: 1px solid var(--border-hover); background: rgba(12,12,16,0.85); color: var(--text-primary); font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.18s; }
-    .pi-nav:hover { border-color: var(--accent); color: var(--accent); }
-    .pi-prev { left: 12px; } .pi-next { right: 12px; }
-    .pi-dots { display: flex; gap: 8px; justify-content: center; margin-top: 16px; }
-    .pi-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-hover); border: none; cursor: pointer; padding: 0; }
-    .pi-dot.on { background: var(--accent); }
+    .pi-carousel {
+      position: relative;
+      margin-top: 8px;
+    }
+
+    .pi-track {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 8px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .pi-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pi-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      overflow: hidden;
+    }
+
+    .pi-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pi-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border-hover);
+      background: rgba(12, 12, 16, 0.85);
+      color: var(--text-primary);
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.18s;
+    }
+
+    .pi-nav:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .pi-prev {
+      left: 12px;
+    }
+
+    .pi-next {
+      right: 12px;
+    }
+
+    .pi-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    .pi-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border-hover);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .pi-dot.on {
+      background: var(--accent);
+    }
 
     /* features */
-    .pi-feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .pi-feat { background: var(--bg-card); padding: 24px; }
-    .pi-feat h4 { margin: 0 0 8px; font-size: 16px; }
-    .pi-feat p { margin: 0; color: var(--text-secondary); font-size: 14px; line-height: 1.55; }
+    .pi-feats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
 
-    .pi-reqs { display: flex; flex-wrap: wrap; gap: 10px 28px; font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary); }
-    .pi-reqs b { color: var(--text-primary); }
+    .pi-feat {
+      background: var(--bg-card);
+      padding: 24px;
+    }
+
+    .pi-feat h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .pi-feat p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .pi-reqs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 28px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .pi-reqs b {
+      color: var(--text-primary);
+    }
 
     /* bug report */
-    .pi-bug { background: var(--bg-secondary); border: 1px solid var(--border); padding: 32px; max-width: 760px; }
-    .pi-bug h2 { margin: 0 0 6px; }
-    .pi-bug p.lead { color: var(--text-secondary); margin: 0 0 22px; line-height: 1.6; }
-    .pi-form { display: grid; gap: 14px; }
-    .pi-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .pi-field label { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
-    .pi-field input, .pi-field select, .pi-field textarea { width: 100%; background: var(--bg-card); border: 1px solid var(--border-hover); color: var(--text-primary); font: inherit; font-size: 14px; padding: 11px 13px; border-radius: 0; }
-    .pi-field textarea { min-height: 140px; resize: vertical; font-family: inherit; }
-    .pi-field input:focus, .pi-field select:focus, .pi-field textarea:focus { outline: none; border-color: var(--accent); }
-    .pi-bug .pi-btn { justify-content: center; }
-    .pi-msg { font-family: var(--font-mono); font-size: 12px; margin-top: 6px; }
+    .pi-bug {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      padding: 32px;
+      max-width: 760px;
+    }
+
+    .pi-bug h2 {
+      margin: 0 0 6px;
+    }
+
+    .pi-bug p.lead {
+      color: var(--text-secondary);
+      margin: 0 0 22px;
+      line-height: 1.6;
+    }
+
+    .pi-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .pi-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .pi-field label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .pi-field input,
+    .pi-field select,
+    .pi-field textarea {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      font: inherit;
+      font-size: 14px;
+      padding: 11px 13px;
+      border-radius: 0;
+    }
+
+    .pi-field textarea {
+      min-height: 140px;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    .pi-field input:focus,
+    .pi-field select:focus,
+    .pi-field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .pi-bug .pi-btn {
+      justify-content: center;
+    }
+
+    .pi-msg {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      margin-top: 6px;
+    }
 
     /* demo video */
-    .pi-video { aspect-ratio: 16 / 9; max-width: 920px; margin: 18px auto 0; border: 1px solid var(--border); background: #000; }
-    .pi-video iframe { width: 100%; height: 100%; display: block; border: 0; }
+    .pi-video {
+      aspect-ratio: 16 / 9;
+      max-width: 920px;
+      margin: 18px auto 0;
+      border: 1px solid var(--border);
+      background: #000;
+    }
+
+    .pi-video iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+    }
 
     /* center all page content */
-    .pi-wrap { text-align: center; }
-    .pi-tag, .pi-sub { margin-left: auto; margin-right: auto; }
-    .pi-cta, .pi-reqs { justify-content: center; }
-    .pi-bug { margin-left: auto; margin-right: auto; }
-    .pi-logo-img { margin-left: auto; margin-right: auto; }
+    .pi-wrap {
+      text-align: center;
+    }
 
-    @media (max-width: 920px) { .pi-feats { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px) { .pi-row { grid-template-columns: 1fr; } .pi-feats { grid-template-columns: 1fr; } }
+    .pi-tag,
+    .pi-sub {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pi-cta,
+    .pi-reqs {
+      justify-content: center;
+    }
+
+    .pi-bug {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pi-logo-img {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 920px) {
+      .pi-feats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .pi-row {
+        grid-template-columns: 1fr;
+      }
+
+      .pi-feats {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -170,11 +477,14 @@
         never touched.
       </p>
       <div class="pi-cta">
-        <a class="pi-btn pi-btn--dl" href="../assets/pitchit/pitch-it-1.0.0.ablx" download id="downloadBtn">&darr; Download PITCH:IT</a>
-        <a class="pi-btn pi-btn--buy gumroad-button" href="https://xterminatorapps.gumroad.com/l/ejdblj">Buy a license &middot; $34.99</a>
+        <a class="pi-btn pi-btn--dl" href="../assets/pitchit/pitch-it-1.0.0.ablx" download id="downloadBtn">&darr;
+          Download PITCH:IT</a>
+        <a class="pi-btn pi-btn--buy" href="https://xterminatorapps.gumroad.com/l/ejdblj">Buy a license &middot;
+          $34.99</a>
         <a class="pi-btn pi-btn--ghost" href="#bug">Report a bug</a>
       </div>
-      <p class="pi-note">5 free corrections to try &middot; one license activates 2 computers &middot; Mac &amp; Windows</p>
+      <p class="pi-note">5 free corrections to try &middot; one license activates 2 computers &middot; Mac &amp; Windows
+      </p>
     </div>
   </section>
 
@@ -198,10 +508,14 @@
         <!-- SLIDES: replace each .pi-slide's text with <img src="../assets/pitchit/shot-1.png" alt="..."> -->
         <div class="pi-track" id="piTrack">
           <div class="pi-slide"><img src="../assets/pitchit/pitchit-23.png" alt="PITCH:IT in Ableton Live"></div>
-          <div class="pi-slide"><img src="../assets/pitchit/pitchit-24.png" alt="PITCH:IT in Ableton Live" loading="lazy"></div>
-          <div class="pi-slide"><img src="../assets/pitchit/pitchit-25.png" alt="PITCH:IT in Ableton Live" loading="lazy"></div>
-          <div class="pi-slide"><img src="../assets/pitchit/pitchit-26.png" alt="PITCH:IT in Ableton Live" loading="lazy"></div>
-          <div class="pi-slide"><img src="../assets/pitchit/pitchit-27.png" alt="PITCH:IT in Ableton Live" loading="lazy"></div>
+          <div class="pi-slide"><img src="../assets/pitchit/pitchit-24.png" alt="PITCH:IT in Ableton Live"
+              loading="lazy"></div>
+          <div class="pi-slide"><img src="../assets/pitchit/pitchit-25.png" alt="PITCH:IT in Ableton Live"
+              loading="lazy"></div>
+          <div class="pi-slide"><img src="../assets/pitchit/pitchit-26.png" alt="PITCH:IT in Ableton Live"
+              loading="lazy"></div>
+          <div class="pi-slide"><img src="../assets/pitchit/pitchit-27.png" alt="PITCH:IT in Ableton Live"
+              loading="lazy"></div>
         </div>
         <button class="pi-nav pi-prev" id="piPrev" aria-label="Previous">&lsaquo;</button>
         <button class="pi-nav pi-next" id="piNext" aria-label="Next">&rsaquo;</button>
@@ -215,12 +529,33 @@
     <div class="pi-wrap">
       <span class="pi-eyebrow">[ What it does ]</span>
       <div class="pi-feats" style="margin-top:18px">
-        <div class="pi-feat"><h4>Pitch correction</h4><p>Drag notes to retune; snaps to the nearest semitone (hold Ctrl/Shift for fine), double-click to snap to your scale, or Snap All at once.</p></div>
-        <div class="pi-feat"><h4>Vibrato control</h4><p>Flatten, keep, or exaggerate the vibrato of any note - per note, not a blunt global effect.</p></div>
-        <div class="pi-feat"><h4>6 detection algorithms</h4><p>Vocal, Universal, Leads, Solo, Chords, Fast. Switch instantly to fit the source.</p></div>
-        <div class="pi-feat"><h4>Live preview</h4><p>Hold a note to audition it, and hear the pitch move as you drag. Decide before you commit.</p></div>
-        <div class="pi-feat"><h4>Sounds natural</h4><p>Re-pitches the actual waveform, so formants and timbre stay intact. Vocals, leads, synths, bass - mono or poly.</p></div>
-        <div class="pi-feat"><h4>Non-destructive</h4><p>Apply renders a tuned copy to a new track at the original volume. Untouched notes stay bit-for-bit identical. Extract MIDI too.</p></div>
+        <div class="pi-feat">
+          <h4>Pitch correction</h4>
+          <p>Drag notes to retune; snaps to the nearest semitone (hold Ctrl/Shift for fine), double-click to snap to
+            your scale, or Snap All at once.</p>
+        </div>
+        <div class="pi-feat">
+          <h4>Vibrato control</h4>
+          <p>Flatten, keep, or exaggerate the vibrato of any note - per note, not a blunt global effect.</p>
+        </div>
+        <div class="pi-feat">
+          <h4>6 detection algorithms</h4>
+          <p>Vocal, Universal, Leads, Solo, Chords, Fast. Switch instantly to fit the source.</p>
+        </div>
+        <div class="pi-feat">
+          <h4>Live preview</h4>
+          <p>Hold a note to audition it, and hear the pitch move as you drag. Decide before you commit.</p>
+        </div>
+        <div class="pi-feat">
+          <h4>Sounds natural</h4>
+          <p>Re-pitches the actual waveform, so formants and timbre stay intact. Vocals, leads, synths, bass - mono or
+            poly.</p>
+        </div>
+        <div class="pi-feat">
+          <h4>Non-destructive</h4>
+          <p>Apply renders a tuned copy to a new track at the original volume. Untouched notes stay bit-for-bit
+            identical. Extract MIDI too.</p>
+        </div>
       </div>
       <div class="pi-reqs" style="margin-top:28px">
         <span><b>Requires</b> Ableton Live 12 with Extensions (12.4.5 beta or higher)</span>
@@ -239,8 +574,10 @@
         no risk. Verify your email inside the extension and you are in. After installing, restart Ableton Live
         once before your first Apply.</p>
       <div class="pi-cta">
-        <a class="pi-btn pi-btn--dl" href="../assets/pitchit/pitch-it-1.0.0.ablx" id="downloadBtn2" download>&darr; Download PITCH:IT v1.0.0 (.ablx)</a>
-        <a class="pi-btn pi-btn--buy" href="https://xterminatorapps.gumroad.com/l/ejdblj">Buy a license &middot; $34.99</a>
+        <a class="pi-btn pi-btn--dl" href="../assets/pitchit/pitch-it-1.0.0.ablx" id="downloadBtn2" download>&darr;
+          Download PITCH:IT v1.0.0 (.ablx)</a>
+        <a class="pi-btn pi-btn--buy" href="https://xterminatorapps.gumroad.com/l/ejdblj">Buy a license &middot;
+          $34.99</a>
       </div>
     </div>
   </section>
@@ -256,30 +593,39 @@
 
         <!-- SilentForms -->
         <form class="pi-form" id="bugForm" action="https://silentforms.com/api/submit" method="POST">
-          <input type="hidden" name="accessKey" value="99de9d654911128484720ddef623997a23926f95daa2498933c6974a2e147853">
+          <input type="hidden" name="accessKey"
+            value="99de9d654911128484720ddef623997a23926f95daa2498933c6974a2e147853">
           <input type="hidden" name="product" value="PITCH:IT">
           <div class="pi-row">
             <div class="pi-field"><label>Your email</label>
-              <input type="email" name="email" placeholder="you@example.com" required></div>
+              <input type="email" name="email" placeholder="you@example.com" required>
+            </div>
             <div class="pi-field"><label>Name (optional)</label>
-              <input type="text" name="name" placeholder="Name"></div>
+              <input type="text" name="name" placeholder="Name">
+            </div>
           </div>
           <div class="pi-row">
             <div class="pi-field"><label>Operating system</label>
               <select name="os">
                 <option>Windows</option>
                 <option>macOS</option>
-              </select></div>
+              </select>
+            </div>
             <div class="pi-field"><label>Ableton Live version</label>
-              <input type="text" name="live_version" placeholder="e.g. 12.4.5 beta"></div>
+              <input type="text" name="live_version" placeholder="e.g. 12.4.5 beta">
+            </div>
           </div>
           <div class="pi-field"><label>What happened?</label>
-            <textarea name="message" placeholder="What you did, what you expected, and what went wrong. If you can, paste the ExtensionHost log." required></textarea></div>
+            <textarea name="message"
+              placeholder="What you did, what you expected, and what went wrong. If you can, paste the ExtensionHost log."
+              required></textarea>
+          </div>
           <input type="text" name="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
           <button type="submit" class="pi-btn pi-btn--dl">Send bug report</button>
           <div class="pi-msg" id="bugMsg"></div>
         </form>
-        <p class="pi-note">Prefer email? <a href="mailto:contact@xterminatorapps.shop?subject=PITCH:IT%20bug%20report" style="color:var(--accent)">contact@xterminatorapps.shop</a></p>
+        <p class="pi-note">Prefer email? <a href="mailto:contact@xterminatorapps.shop?subject=PITCH:IT%20bug%20report"
+            style="color:var(--accent)">contact@xterminatorapps.shop</a></p>
       </div>
     </div>
   </section>
@@ -353,10 +699,12 @@
       document.getElementById("piPrev").onclick = function () { go(i - 1); };
       document.getElementById("piNext").onclick = function () { go(i + 1); };
       // keep dots in sync if the user swipes/scrolls
-      var t; track.addEventListener("scroll", function () { clearTimeout(t); t = setTimeout(function () {
-        var nearest = 0, best = 1e9; for (var k = 0; k < n; k++) { var dx = Math.abs(slides[k].offsetLeft - track.offsetLeft - track.scrollLeft); if (dx < best) { best = dx; nearest = k; } }
-        i = nearest; paint();
-      }, 90); });
+      var t; track.addEventListener("scroll", function () {
+        clearTimeout(t); t = setTimeout(function () {
+          var nearest = 0, best = 1e9; for (var k = 0; k < n; k++) { var dx = Math.abs(slides[k].offsetLeft - track.offsetLeft - track.scrollLeft); if (dx < best) { best = dx; nearest = k; } }
+          i = nearest; paint();
+        }, 90);
+      });
     })();
 
     // ---- bug form: AJAX submit so the page stays put ----
