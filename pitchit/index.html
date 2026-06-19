@@ -55,6 +55,9 @@
     href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
+  <!-- Gumroad overlay -->
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+
   <!-- Base site styles -->
   <link rel="stylesheet" href="../css/styles.css?v=2026.04.27.3">
 
@@ -168,7 +171,7 @@
       </p>
       <div class="pi-cta">
         <a class="pi-btn pi-btn--dl" href="../assets/pitchit/pitch-it-1.0.0.ablx" download id="downloadBtn">&darr; Download PITCH:IT</a>
-        <a class="pi-btn pi-btn--buy" href="https://xterminatorapps.gumroad.com/l/ejdblj">Buy a license &middot; $34.99</a>
+        <a class="pi-btn pi-btn--buy gumroad-button" href="https://xterminatorapps.gumroad.com/l/ejdblj">Buy a license &middot; $34.99</a>
         <a class="pi-btn pi-btn--ghost" href="#bug">Report a bug</a>
       </div>
       <p class="pi-note">5 free corrections to try &middot; one license activates 2 computers &middot; Mac &amp; Windows</p>
@@ -356,8 +359,7 @@
       }, 90); });
     })();
 
-    // ---- bug form: try AJAX so the page stays put; if cross-origin AJAX is blocked, fall back to a normal
-    // POST (programmatic submit() does NOT re-fire this handler) so a report is never lost ----
+    // ---- bug form: AJAX submit so the page stays put ----
     (function () {
       var form = document.getElementById("bugForm"), msg = document.getElementById("bugMsg");
       if (!form) return;
@@ -365,9 +367,15 @@
         e.preventDefault();
         msg.style.color = "var(--text-secondary)"; msg.textContent = "Sending...";
         fetch(form.action, { method: "POST", body: new FormData(form), headers: { "Accept": "application/json" } })
-          .then(function (r) { if (!r.ok) throw new Error(); })
-          .then(function () { msg.style.color = "var(--accent)"; msg.textContent = "Thanks - your report was sent."; form.reset(); })
-          .catch(function () { msg.textContent = ""; form.submit(); });   // AJAX blocked -> plain POST
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            if (data.status === "success") {
+              msg.style.color = "var(--accent)"; msg.textContent = "Thanks - your report was sent."; form.reset();
+            } else {
+              msg.style.color = "#f44"; msg.textContent = "Something went wrong. Please try the email link below.";
+            }
+          })
+          .catch(function () { msg.style.color = "#f44"; msg.textContent = "Network error. Please try the email link below."; });
       });
     })();
   </script>
