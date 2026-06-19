@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en" data-accent="green">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="../assets/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+
+<!-- Primary Meta -->
+<title>Blog | XTERMINATORAPPS - Audio Production Tips and Tutorials</title>
+<meta name="description" content="Tutorials, guides, and tips for music producers and audio engineers. Learn about AAF conversion, Ableton Live workflows, DAW project migration, and AI sound design.">
+<meta name="keywords" content="music production blog, Ableton Live tutorials, AAF conversion guide, DAW workflow tips, audio engineering blog, Pro Tools to Ableton, sound design tutorials">
+<meta name="author" content="XTERMINATORAPPS">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://xterminatorapps.shop/blog/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Blog | XTERMINATORAPPS - Audio Production Tips and Tutorials">
+<meta property="og:description" content="Tutorials, workflow guides, and production tips for music producers and audio engineers.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://xterminatorapps.shop/assets/logoxta-05.png">
+<meta property="og:image:alt" content="XTERMINATORAPPS — Audio Workflow Software">
+<meta property="og:url" content="https://xterminatorapps.shop/blog/">
+<meta property="og:site_name" content="XTERMINATORAPPS">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="XTAPPS Blog — Audio Production Tips and Tutorials">
+<meta name="twitter:description" content="Tutorials, workflow guides, and production tips for music producers and audio engineers.">
+<meta name="twitter:image" content="https://xterminatorapps.shop/assets/logoxta-05.png">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "XTAPPS Blog",
+  "url": "https://xterminatorapps.shop/blog/",
+  "description": "Tutorials, workflow guides, and production tips for music producers and audio engineers.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "XTERMINATORAPPS",
+    "url": "https://xterminatorapps.shop"
+  }
+}
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Styles -->
+<link rel="stylesheet" href="../css/styles.css?v=2026.04.27.3">
+<style>
+
+  /* Blog-specific */
+  .blog-hero {
+    padding: 80px 0 64px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .blog-hero__inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  .blog-hero__title {
+    font-size: clamp(56px, 8vw, 128px);
+    line-height: 0.88;
+  }
+  .blog-hero__title em { font-style: normal; color: var(--accent); }
+  .blog-hero__meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    line-height: 2;
+    text-align: right;
+    padding-bottom: 8px;
+  }
+  .blog-hero__meta .val { color: var(--accent); }
+  .blog-hero__sub {
+    margin-top: 24px;
+    color: var(--text-secondary);
+    max-width: 560px;
+    font-size: 16px;
+  }
+
+  /* Filter/tag strip */
+  .blog-filter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .blog-chip {
+    padding: 8px 14px;
+    border: 1px solid var(--border-hover);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .blog-chip:hover { color: var(--accent); border-color: var(--accent); }
+  .blog-chip.on { background: var(--accent); color: #000; border-color: var(--accent); }
+
+  /* Blog grid — featured + regular */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0;
+    border-left: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    margin: 48px 0;
+  }
+  .blog-card {
+    grid-column: span 4;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 280px;
+    position: relative;
+    transition: background 0.2s;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .blog-card:hover {
+    background: var(--bg-card);
+  }
+  .blog-card:hover .blog-card__title { color: var(--accent); }
+  .blog-card:hover .blog-card__go { transform: translateX(6px); color: var(--accent); }
+  .blog-card--featured {
+    grid-column: span 8;
+    min-height: 380px;
+    background:
+      linear-gradient(135deg, rgba(163,255,0,0.05), transparent 60%),
+      var(--bg-card);
+  }
+  .blog-card--double {
+    grid-column: span 6;
+  }
+
+  .blog-card__num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .blog-card__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 4px 10px;
+    border: 1px solid var(--accent);
+    align-self: flex-start;
+  }
+  .blog-card__tag--purple { color: var(--purple); border-color: var(--purple); }
+  .blog-card__title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    text-wrap: pretty;
+  }
+  .blog-card--featured .blog-card__title {
+    font-size: 42px;
+  }
+  .blog-card--double .blog-card__title {
+    font-size: 32px;
+  }
+  .blog-card__excerpt {
+    color: var(--text-secondary);
+    font-size: 14px;
+    flex: 1;
+    line-height: 1.6;
+  }
+  .blog-card__foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: auto;
+  }
+  .blog-card__go {
+    color: var(--text-secondary);
+    transition: all 0.2s;
+  }
+
+  /* Editorial/article-layout variations */
+  .blog-card--wave::before {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 40px;
+    background:
+      repeating-linear-gradient(90deg,
+        var(--accent) 0 2px,
+        transparent 2px 6px);
+    opacity: 0.3;
+    mask: linear-gradient(to bottom, transparent, black);
+    -webkit-mask: linear-gradient(to bottom, transparent, black);
+    pointer-events: none;
+  }
+  .blog-card--code::after {
+    content: "// " attr(data-slug);
+    position: absolute;
+    right: 28px;
+    top: 32px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    text-transform: lowercase;
+    opacity: 0.6;
+  }
+
+  @media (max-width: 960px) {
+    .blog-hero__inner { grid-template-columns: 1fr; }
+    .blog-hero__meta { text-align: left; }
+    .blog-card,
+    .blog-card--featured,
+    .blog-card--double { grid-column: span 12; }
+  }
+</style>
+</head>
+<body data-grid="false">
+
+<!-- Top bar (same as main site) -->
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <a href="../" class="brand">
+      <img src="../assets/logoxta-05.png" alt="XTAPPS" class="brand__logo">
+    </a>
+    <nav class="nav">
+      <a href="../index.html#products" data-i="01">Products</a>
+      <a href="../index.html#about" data-i="02">About</a>
+      <a href="./" data-i="03">Blog</a>
+      <a href="../index.html#faq" data-i="04">FAQ</a>
+      <a href="../index.html#contact" data-i="05">Contact</a>
+    </nav>
+    <div class="topbar__status">
+      <span class="pulse"></span>
+      <span id="clock">LIVE · 00:00:00</span>
+    </div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="blog-hero">
+  <div class="wrap">
+    <div class="blog-hero__inner">
+      <div>
+        <span class="eyebrow">Field notes / Audio production</span>
+        <h1 class="display blog-hero__title">
+          The <em>XTAPPS</em><br>Journal.
+        </h1>
+        <p class="blog-hero__sub">
+          Tutorials, workflow guides, and production tips for music producers and audio engineers — from AAF conversion
+          and cross-DAW migration to AI sound design and real-time streaming.
+        </p>
+      </div>
+      <div class="blog-hero__meta">
+        <div>ARTICLES · <span class="val">15</span></div>
+        <div>TOPICS · <span class="val">09</span></div>
+        <div>AVG READ · <span class="val">7 MIN</span></div>
+        <div>UPDATED · <span class="val">2026.04</span></div>
+      </div>
+    </div>
+    <div class="blog-filter" id="filter">
+      <button class="blog-chip on" data-t="all">ALL · 15</button>
+      <button class="blog-chip" data-t="tutorial">TUTORIAL</button>
+      <button class="blog-chip" data-t="guide">GUIDE</button>
+      <button class="blog-chip" data-t="workflow">WORKFLOW</button>
+      <button class="blog-chip" data-t="explainer">EXPLAINER</button>
+      <button class="blog-chip" data-t="technical">TECHNICAL</button>
+      <button class="blog-chip" data-t="industry">INDUSTRY</button>
+      <button class="blog-chip" data-t="comparison">COMPARISON</button>
+      <button class="blog-chip" data-t="tips">TIPS</button>
+      <button class="blog-chip" data-t="roundup">ROUNDUP</button>
+    </div>
+  </div>
+</section>
+
+<!-- Blog grid -->
+<section class="section" style="padding-top:48px;">
+  <div class="wrap">
+    <div class="blog-grid" id="blogGrid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Footer (same as main) -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="../assets/LOKOOO-01.png" alt="XTAPPS" class="footer__logo">
+        <p>Professional audio software for music producers. Lifetime licenses. No subscriptions. Built to make producers faster.</p>
+      </div>
+      <div class="footer__col">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="../index.html#u-aaf">Abletonlive.aaf</a></li>
+          <li><a href="../index.html#u-ablt">ABLETUBE</a></li>
+          <li><a href="../index.html#u-sf">SampleForge</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#changelog">Changelog</a></li>
+          <li><a href="./">Blog</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Resources</h5>
+        <ul>
+          <li><a href="mailto:contact@xterminatorapps.shop">Contact</a></li>
+          <li><a href="https://github.com/xterminatorapps">GitHub</a></li>
+          <li><a href="https://xterminatorapps.gumroad.com/affiliates">Affiliates</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <div>© 2026 XTAPPS · All rights reserved</div>
+      <div><span>Audio tools built for professionals</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Clock */
+(function(){
+  const el = document.getElementById('clock');
+  function tick() {
+    const d = new Date();
+    el.textContent = `LIVE · ${String(d.getUTCHours()).padStart(2,'0')}:${String(d.getUTCMinutes()).padStart(2,'0')}:${String(d.getUTCSeconds()).padStart(2,'0')} UTC`;
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+/* Posts data */
+const POSTS = [
+  { slug:'how-to-convert-aaf-to-ableton-live', tag:'Tutorial', title:'How to Convert AAF to Ableton Live', excerpt:'Step-by-step guide to importing AAF files into Ableton Live with sample-accurate precision.', read:8 },
+  { slug:'pro-tools-to-ableton-live-transfer-guide', tag:'Guide', title:'Pro Tools to Ableton Live Project Transfer Guide', excerpt:'Move your Pro Tools sessions to Ableton Live without losing timing, automation, or fades.', read:7 },
+  { slug:'premiere-pro-audio-to-ableton-live', tag:'Workflow', title:'Import Premiere Pro Audio into Ableton Live', excerpt:'Bridge video editing and music production by exporting audio from Premiere Pro into Ableton.', read:6 },
+  { slug:'davinci-resolve-audio-export-ableton', tag:'Workflow', title:'DaVinci Resolve to Ableton Live Audio Workflow', excerpt:'Export audio timelines from DaVinci Resolve and reconstruct them inside Ableton Live.', read:6 },
+  { slug:'what-is-an-aaf-file', tag:'Explainer', title:'What is an AAF File? Complete Guide', excerpt:'Everything audio engineers need to know about the Advanced Authoring Format and how to use it.', read:9 },
+  { slug:'best-audio-workflow-tools-2026', tag:'Roundup', title:'Best Audio Workflow Tools for Producers in 2026', excerpt:'Top software tools that speed up music production, mixing, and post-production workflows.', read:10 },
+  { slug:'stream-youtube-audio-into-ableton-live', tag:'Tutorial', title:'How to Stream YouTube Audio into Ableton Live', excerpt:'Route real-time YouTube audio directly into your Ableton session for sampling and remixing.', read:7 },
+  { slug:'max-for-live-audio-streaming-guide', tag:'Technical', title:'Max for Live Audio Streaming Setup Guide', excerpt:'Set up real-time audio streaming inside Ableton using Max for Live and OSC protocol.', read:8 },
+  { slug:'ai-drum-sample-generation-future', tag:'Industry', title:'AI Drum Sample Generation: The Future of Beat Making', excerpt:'How neural audio synthesis is changing drum sound design and sample creation for producers.', read:8 },
+  { slug:'ableton-live-post-production-workflow', tag:'Guide', title:'Ableton Live for Post Production: Complete Workflow', excerpt:'Why more post-production engineers are choosing Ableton Live and how to set it up.', read:9 },
+  { slug:'cross-daw-compatibility-guide', tag:'Guide', title:'Cross-DAW Compatibility: Moving Projects Between DAWs', excerpt:'The complete guide to transferring sessions between Pro Tools, Logic, Ableton, and more.', read:10 },
+  { slug:'free-vs-paid-daw-converters', tag:'Comparison', title:'Free vs Paid DAW Converter Tools Compared', excerpt:'An honest comparison of session conversion tools and what you actually get for your money.', read:7 },
+  { slug:'sample-youtube-audio-music-production', tag:'Tutorial', title:'How to Sample YouTube Audio for Music Production', excerpt:'Legal and technical guide to sampling audio from YouTube videos in your productions.', read:7 },
+  { slug:'ableton-live-workflow-tips', tag:'Tips', title:'7 Time-Saving Ableton Live Workflow Tips', excerpt:'Speed up your production workflow with these essential Ableton Live techniques and shortcuts.', read:6 },
+  { slug:'adobe-audition-to-ableton-live-migration', tag:'Guide', title:'Adobe Audition to Ableton Live: Migration Guide', excerpt:'Switch from Adobe Audition to Ableton Live without losing your multitrack sessions.', read:6 },
+];
+
+/* Render grid */
+function render(posts) {
+  const grid = document.getElementById('blogGrid');
+  grid.innerHTML = posts.map((p, i) => {
+    // First is featured, next 2 are double, rest are triple
+    let sizeClass = '';
+    if (i === 0) sizeClass = 'blog-card--featured blog-card--wave';
+    else if (i === 1 || i === 2) sizeClass = 'blog-card--double';
+    else if (i % 5 === 0) sizeClass = 'blog-card--code';
+    const tagMod = ['Industry','Comparison','Tips'].includes(p.tag) ? 'blog-card__tag--purple' : '';
+    return `
+      <a href="${p.slug}.html" class="blog-card ${sizeClass}" data-slug="${p.slug}" data-tag="${p.tag.toLowerCase()}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <span class="blog-card__tag ${tagMod}">${p.tag}</span>
+          <span class="blog-card__num">${String(i+1).padStart(2,'0')} / ${String(posts.length).padStart(2,'0')}</span>
+        </div>
+        <h2 class="blog-card__title">${p.title}</h2>
+        <p class="blog-card__excerpt">${p.excerpt}</p>
+        <div class="blog-card__foot">
+          <span>${p.read} min read</span>
+          <span class="blog-card__go">READ →</span>
+        </div>
+      </a>`;
+  }).join('');
+}
+render(POSTS);
+
+/* Filter */
+document.getElementById('filter').addEventListener('click', (e) => {
+  const b = e.target.closest('.blog-chip');
+  if (!b) return;
+  document.querySelectorAll('.blog-chip').forEach(c => c.classList.remove('on'));
+  b.classList.add('on');
+  const t = b.dataset.t;
+  if (t === 'all') render(POSTS);
+  else render(POSTS.filter(p => p.tag.toLowerCase() === t));
+});
+</script>
+
+<div class="cursor-dot"></div>
+<script src="../js/cursor.js?v=2026.04.27" defer></script>
+</body>
+</html>

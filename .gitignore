@@ -1,0 +1,9 @@
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project
+admin-promo.html
+supabase/
